@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | Welcome</title>
-
-    <link rel="icon" type="image/png" href="favicon.png">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | LJG Studios</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
+        /* ---------- Colours (change these to retheme the page) ---------- */
         :root {
-            --bg-color:#0A0A0C;
-            --card-bg:#16161A;
-            --card-bg-light:#1B1B20;
-            --text-color:#6e0eec;
-            --text-muted:#8C8C95;
-            --accent-color:#6e0eec;
-            --accent-hover:#5614acc0;
-            --accent-deep:#500199;
-            --accent-pale:#F1DFA8;
-            --border-color:#2B2620;
-            --border-radius:4px;
-}
+            --bg-color: #0A0A0C;
+            --card-bg: #16161A;
+            --card-bg-light: #1B1B20;
+            --text-color: #6e0eec;
+            --text-muted: #8C8C95;
+            --text-soft: #B4B4BD;
+            --accent-color: #6e0eec;
+            --accent-light: #b896ff;
+            --accent-hover: #5614acc0;
+            --accent-deep: #500199;
+            --accent-pale: #3bc3f8;
+            --border-color: #2B2620;
+            --border-radius: 4px;
+            --code-bg: rgba(110,14,236,0.12);
+        }
+
+        /* ---------- Page basics ---------- */
         * {
             margin: 0;
             padding: 0;
@@ -31,11 +34,9 @@
         }
 
         body {
-            font-family: 'Montserrat', 'Segoe UI', sans-serif;
+            font-family: 'Montserrat','Segoe UI',sans-serif;
             background-color: var(--bg-color);
-            background-image:
-                radial-gradient(circle at 15% 0%, rgba(201,161,75,0.05) 0%, transparent 45%),
-                radial-gradient(circle at 85% 100%, rgba(201,161,75,0.04) 0%, transparent 45%);
+            background-image: radial-gradient(circle at 15% 0%, rgba(110,14,236,0.10) 0%, transparent 45%), radial-gradient(circle at 85% 100%, rgba(59,195,248,0.05) 0%, transparent 45%);
             color: var(--text-color);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
@@ -44,66 +45,53 @@
         .container {
             max-width: 760px;
             margin: 0 auto;
-            padding: 90px 24px 60px;
+            padding: 80px 24px 50px;
         }
 
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* ---------- Header ---------- */
         header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 44px;
         }
 
         .eyebrow {
             display: inline-block;
             color: var(--accent-color);
-            font-size: 0.72rem;
+            font-size: .72rem;
             font-weight: 500;
             letter-spacing: 4px;
             text-transform: uppercase;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         h1 {
-            font-family: 'Cormorant Garamond', serif;
-            background: linear-gradient(135deg, var(--accent-pale) 0%, var(--accent-color) 45%, var(--accent-hover) 60%, var(--accent-deep) 100%);
+            font-family: 'Cormorant Garamond',serif;
+            background: linear-gradient(135deg,var(--accent-pale) 0%,var(--accent-color) 45%,var(--accent-deep) 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            font-size: 3rem;
+            font-size: 3.4rem;
             font-weight: 600;
-            letter-spacing: 0.5px;
-            margin-bottom: 22px;
+            letter-spacing: .5px;
             line-height: 1.1;
+            margin-bottom: 14px;
         }
 
-        hr {
-            margin-top: 20px;
-            margin-bottom: 25px;
-        }
-
-        .important-note {
-            display: inline-block;
-            text-align: left;
-            background-color: rgba(201, 161, 75, 0.06);
-            border-left: 3px solid var(--accent-color);
-            color: var(--text-muted);
-            padding: 14px 18px;
-            border-radius: 0 var(--border-radius) var(--border-radius) 0;
-            font-size: 0.92rem;
-            letter-spacing: 0.2px;
-        }
-
-        .important-note strong {
-            color: var(--accent-hover);
-        }
-
+        /* ---------- Cards ---------- */
         section {
             position: relative;
-            background: linear-gradient(160deg, var(--card-bg-light) 0%, var(--card-bg) 100%);
-            padding: 36px 40px;
+            overflow: hidden;
+            background: linear-gradient(160deg,var(--card-bg-light) 0%,var(--card-bg) 100%);
+            padding: 34px 38px;
             margin-bottom: 26px;
             border-radius: var(--border-radius);
             border: 1px solid var(--border-color);
-            box-shadow: 0 12px 30px -10px rgba(0,0,0,0.5);
+            box-shadow: 0 12px 30px -10px rgba(0,0,0,.5);
         }
 
         section::before {
@@ -113,16 +101,15 @@
             left: 0;
             width: 2px;
             height: 100%;
-            background: linear-gradient(180deg, var(--accent-color), transparent);
-            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            background: linear-gradient(180deg,var(--accent-color),transparent);
         }
 
-        h3 {
-            font-family: 'Cormorant Garamond', serif;
-            color: var(--accent-hover);
-            font-size: 1.6rem;
+        h2 {
+            font-family: 'Cormorant Garamond',serif;
+            color: var(--accent-light);
+            font-size: 1.7rem;
             font-weight: 600;
-            letter-spacing: 0.3px;
+            letter-spacing: .3px;
             margin-bottom: 16px;
             padding-bottom: 12px;
             border-bottom: 1px solid var(--border-color);
@@ -130,27 +117,250 @@
 
         p {
             color: var(--text-muted);
-            font-size: 1rem;
+            font-size: .98rem;
             font-weight: 300;
-            margin-bottom: 10px;
-            letter-spacing: 0.2px;
+            letter-spacing: .2px;
+            margin-bottom: 12px;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
         }
 
         code {
-            background-color: var(--code-bg);
-            color: var(--accent-hover);
+            background: var(--code-bg);
+            color: var(--accent-light);
             padding: 2px 7px;
             border-radius: 3px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 1 rem;
+            font-family: 'Courier New',monospace;
+            font-size: .92rem;
             font-weight: bold;
-            text-shadow: 0 0 8px var(--accent-hover);
         }
 
+        /* ---------- Profile ---------- */
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .avatar {
+            flex-shrink: 0;
+            padding: 3px;
+            border-radius: 50%;
+            background: linear-gradient(135deg,var(--accent-pale),var(--accent-color),var(--accent-deep));
+            box-shadow: 0 0 34px -8px var(--accent-color);
+        }
+
+        .avatar img {
+            width: 128px;
+            height: 128px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--card-bg);
+        }
+
+        .profile-name {
+            font-family: 'Cormorant Garamond',serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #ECECF1;
+            line-height: 1.1;
+        }
+
+        .handle {
+            color: var(--accent-light);
+            font-size: .8rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin: 6px 0 10px;
+        }
+
+        /* ---------- Stats ---------- */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 12px;
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .stat {
+            text-align: center;
+            padding: 14px 8px;
+            background: rgba(255,255,255,.02);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+        }
+
+        .stat b {
+            display: block;
+            font-family: 'Cormorant Garamond',serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            line-height: 1;
+            color: var(--accent-light);
+            font-variant-numeric: lining-nums;
+        }
+
+        .stat span {
+            display: block;
+            margin-top: 6px;
+            font-size: .68rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        /* ---------- YouTube button ---------- */
+        .yt-btn {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 26px;
+            padding: 12px 20px 12px 14px;
+            background: rgba(110,14,236,.08);
+            border: 1px solid var(--accent-color);
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            transition: all .25s ease;
+        }
+
+        .yt-btn svg {
+            width: 44px;
+            height: 44px;
+            flex-shrink: 0;
+        }
+
+        .yt-text {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .yt-text strong {
+            color: #ECECF1;
+            font-size: .82rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .yt-text small {
+            color: var(--text-muted);
+            font-size: .78rem;
+            font-weight: 300;
+        }
+
+        .yt-arrow {
+            color: var(--accent-light);
+            font-size: 1.3rem;
+            transition: transform .25s ease;
+        }
+
+        .yt-btn:hover {
+            background: linear-gradient(135deg,rgba(80,1,153,.55),rgba(110,14,236,.35));
+            box-shadow: 0 8px 24px -6px rgba(110,14,236,.55);
+        }
+
+        .yt-btn:hover .yt-arrow {
+            transform: translateX(5px);
+        }
+
+        .yt-btn:active {
+            transform: translateY(1px);
+        }
+
+        /* ---------- Film list ---------- */
+        .films {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .film {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px;
+            background: rgba(255,255,255,.02);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            transition: all .25s ease;
+        }
+
+        .film:hover {
+            border-color: var(--accent-color);
+            background: rgba(110,14,236,.08);
+        }
+
+        .film img {
+            width: 56px;
+            height: 56px;
+            flex-shrink: 0;
+            border-radius: 3px;
+            object-fit: cover;
+            background: #000;
+        }
+
+        .film strong {
+            display: block;
+            color: #ECECF1;
+            font-family: 'Cormorant Garamond',serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            line-height: 1.15;
+        }
+
+        .status {
+            display: inline-block;
+            margin-top: 5px;
+            font-size: .62rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #3ddc84;
+        }
+
+        .status.soon {
+            color: var(--accent-light);
+        }
+
+        /* ---------- Credits list ---------- */
+        .credit {
+            display: flex;
+            gap: 12px;
+            align-items: baseline;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .credit:last-child {
+            border-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .credit b {
+            color: #ECECF1;
+            font-weight: 500;
+            font-size: .9rem;
+            min-width: 110px;
+        }
+
+        .credit span {
+            color: var(--text-muted);
+            font-size: .92rem;
+            font-weight: 300;
+        }
+
+        /* ---------- Buttons ---------- */
         .nav-buttons {
             display: flex;
             gap: 14px;
-            margin-top: 36px;
         }
 
         .btn {
@@ -158,113 +368,159 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            border: 1px solid var(--accent-color);
-            outline: none;
             padding: 13px 28px;
+            border: 1px solid var(--accent-color);
             border-radius: var(--border-radius);
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.78rem;
+            font-family: 'Montserrat',sans-serif;
+            font-size: .78rem;
             font-weight: 500;
             letter-spacing: 2px;
             text-transform: uppercase;
             line-height: 1;
             text-decoration: none;
-            transition: all 0.25s ease;
-            color: var(--accent-hover) !important;
+            color: var(--accent-light);
+            transition: all .25s ease;
         }
 
         .btn:hover {
-            background: linear-gradient(135deg, var(--accent-deep) 0%, var(--accent-color) 50%, var(--accent-hover) 100%);
-            color: #14110A !important;
-            border-color: var(--accent-hover);
-            box-shadow: 0 6px 20px -4px rgba(201, 161, 75, 0.45);
-            text-decoration: none;
+            background: linear-gradient(135deg,var(--accent-deep),var(--accent-color));
+            color: #fff;
+            box-shadow: 0 6px 20px -4px rgba(110,14,236,.5);
         }
 
         .btn:active {
             transform: translateY(1px);
         }
 
-        .btn-primary {
-            background: transparent;
-            color: var(--accent-hover) !important;
-        }
-
-        .btn-primary:hover {
-            background: linear-gradient(135deg, var(--accent-deep) 0%, var(--accent-color) 50%, var(--accent-hover) 100%);
-            color: #14110A !important;
-            border-color: var(--accent-hover);
-            box-shadow: 0 6px 20px -4px rgba(201, 161, 75, 0.45);
-        }
-
-        .btn:active {
-            transform: translateY(1px);
-        }
-
+        /* ---------- Footer ---------- */
         footer {
             text-align: center;
-            margin-top: 50px;
+            margin-top: 44px;
             padding-top: 24px;
             border-top: 1px solid var(--border-color);
             color: var(--text-muted);
-            font-size: 0.8rem;
+            font-size: .8rem;
             letter-spacing: 1px;
+            line-height: 1.9;
         }
 
-        .paragraph {
-          margin-bottom: 0;
-          margin-top: 0;
+        footer address {
+            font-style: normal;
         }
 
-        .divider {
-          margin-top: 50px;
-          margin-bottom: 50px;
+        /* ---------- Mobile ---------- */
+        @media (max-width:600px) {
+            .container {
+                padding: 50px 16px 40px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            section {
+                padding: 24px 20px;
+            }
+
+            .profile {
+                flex-direction: column;
+                text-align: center;
+                gap: 18px;
+            }
+
+            .films {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+            }
+
+            .credit {
+                flex-direction: column;
+                gap: 2px;
+            }
         }
     </style>
 </head>
 <body>
-  
-    <body>
-  <div class="container">
-        <header>
-            <span class="eyebrow">LiamsLevelUp</span>
-            <h1>About Me</h1>
-            <span class="eyebrow">LJG Studios</span>
-        </header>
+<div class="container">
 
+    <header>
+        <span class="eyebrow">LiamsLevelUp</span>
+        <h1>About Me</h1>
+        <span class="eyebrow">LJG Studios</span>
+    </header>
 
-        <main>
+    <main>
+        <!-- Profile -->
         <section>
-          <h1>Who i am</h1>
-            <p class="paragraph">I am <code>LiamsLevelUp</code></p>
-            <p class="paragraph">i make gorilla tag films.</p>
-            <img src="channels4_profile.jpg" alt="Ghost Apocalypse" width="200" height="200">
+            <div class="profile">
+                <div class="avatar"><img src="channels4_profile.jpg" alt="Liam’s Level Up profile picture" width="128" height="128"></div>
+                <div>
+                    <div class="profile-name">Liam’s Level Up</div>
+                    <div class="handle">@liamslevelup</div>
+                    <p>I make Gorilla Tag films, from kingdom wars to ghost apocalypses.</p>
+                </div>
+            </div>
 
+            <div class="stats">
+                <div class="stat"><b>5</b><span>Films out</span></div>
+                <div class="stat"><b>1</b><span>Coming soon</span></div>
+                <div class="stat"><b>1K</b><span>Sub goal</span></div>
+            </div>
 
-        <hr/>
-
-
-            <a href="https://www.youtube.com/@LiamsLevelUp" class="btn" target="_blank">Go to my youtube channel ▶️</a>
+            <a href="https://www.youtube.com/@LiamsLevelUp" class="yt-btn" target="_blank" rel="noopener">
+                <svg viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="10" fill="#ff0033"/><path d="M17 13.5v17l14-8.5z" fill="#fff"/></svg>
+                <span class="yt-text"><strong>Watch on YouTube</strong><small>youtube.com/@LiamsLevelUp</small></span>
+                <span class="yt-arrow">&rarr;</span>
+            </a>
         </section>
+
+        <!-- What I do -->
         <section>
-          <h1>What i do</h1>
-            <p class="paragraph">I am a gorilla tag youtube film content creator, i make various films</p>
-            <p class="paragraph">such as <code>The Biggest Infection</code> and <code>Ghost Apocalypse</code>. And I do try</p>
-            <p class="paragraph">my hardest to film them.</p>
+            <h2>What I Do</h2>
+            <p>I’m a Gorilla Tag YouTube film creator. I make a range of films with stories, characters and plenty of action, such as <code>The Biggest Infection</code> and <code>Ghost Apocalypse</code>.</p>
+            <p>I try my hardest to film every one of them, and I’m working towards reaching 1K subscribers.</p>
         </section>
 
+        <!-- Films -->
+        <section>
+            <h2>My Films</h2>
+            <p>A quick look at what I’ve made. Tap a film to see the full details, cast and age rating.</p>
+            <div class="films">
+                <a class="film" href="MyMovies.html"><img src="TheBiggestInfection.jpeg" alt="" width="56" height="56"><div><strong>The Biggest Infection</strong><span class="status">Out now</span></div></a>
+                <a class="film" href="MyMovies.html"><img src="TheBiggestInfection2.jpeg" alt="" width="56" height="56"><div><strong>The Biggest Infection 2</strong><span class="status">Out now</span></div></a>
+                <a class="film" href="MyMovies.html"><img src="TheBiggestInfection3.jpeg" alt="" width="56" height="56"><div><strong>The Biggest Infection 3</strong><span class="status">Out now</span></div></a>
+                <a class="film" href="MyMovies.html"><img src="TheBiggestInfection4.jpeg" alt="" width="56" height="56"><div><strong>The Biggest Infection 4</strong><span class="status soon">Coming soon</span></div></a>
+                <a class="film" href="MyMovies.html"><img src="GhostApocalypse.jpeg" alt="" width="56" height="56"><div><strong>Ghost Apocalypse</strong><span class="status">Out now</span></div></a>
+                <a class="film" href="MyMovies.html"><img src="Agent-poster.jpeg" alt="" width="56" height="56"><div><strong>Agent</strong><span class="status">Out now</span></div></a>
+            </div>
+        </section>
 
+        <!-- Credits -->
+        <section>
+            <h2>Credits</h2>
+            <div class="credit"><b>Proanfun</b><span>Huge credits for help with the films and for maintaining this website.</span></div>
+            <div class="credit"><b>FlashEdits</b><span>Cast member and collaborator.</span></div>
+            <div class="credit"><b>Macievr</b><span>Cast member and collaborator.</span></div>
+        </section>
+
+        <!-- Navigation -->
         <section>
             <div class="nav-buttons">
                 <a href="MyMovies.html" class="btn">Go to My Movies</a>
                 <a href="index.html" class="btn">Return to Homepage 🏠</a>
             </div>
         </section>
-        </main>
+    </main>
 
+    <footer>
+        <address>&copy; 2026 Proanfun and Liamslevelup. All rights reserved.</address>
+        <address>Maintained by Proanfun</address>
+        <address>&#9993; Contact me at proanfunyt@gmail.com</address>
+    </footer>
 
-    
-
+</div>
 </body>
 </html>
