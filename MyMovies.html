@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movies | Welcome</title>
-
-    <link rel="icon" type="image/png" href="favicon.png">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" href="ratings.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movies | Welcome</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
+        /* ---------- Colours (change these to retheme the page) ---------- */
+
         :root {
             --bg-color: #0A0A0C;
             --card-bg: #16161A;
@@ -19,200 +17,528 @@
             --text-color: #6e0eec;
             --text-muted: #8C8C95;
             --accent-color: #6e0eec;
-            --accent-hover: #5614acc0;
+            --accent-light: #b896ff;
             --accent-deep: #500199;
             --accent-pale: #3bc3f8;
             --border-color: #2B2620;
             --border-radius: 4px;
-}
+            --rating-u: #3ddc84;
+            --rating-pg: #f2c94c;
+            --rating-12: #ff9f43;
+            --rating-15: #ff5e9c;
+            --rating-18: #ff3b3b;
+            --rating-r: #e5173f;
+            --rating-tbc: #a56bff;
+        }
+
+        /* ---------- Page basics ---------- */
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Montserrat', 'Segoe UI', sans-serif;
+            font-family: 'Montserrat','Segoe UI',sans-serif;
             background-color: var(--bg-color);
-            background-image:
-                radial-gradient(circle at 15% 0%, rgba(201,161,75,0.05) 0%, transparent 45%),
-                radial-gradient(circle at 85% 100%, rgba(201,161,75,0.04) 0%, transparent 45%);
+            background-image: radial-gradient(circle at 15% 0%,rgba(110,14,236,.10) 0%,transparent 45%),radial-gradient(circle at 85% 100%,rgba(59,195,248,.05) 0%,transparent 45%);
             color: var(--text-color);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
         }
 
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
         .container {
             max-width: 760px;
             margin: 0 auto;
-            padding: 90px 24px 60px;
+            padding: 80px 24px 60px;
         }
+
+        /* ---------- Header and jump links ---------- */
 
         header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
         }
 
         .eyebrow {
             display: inline-block;
-            color: var(--accent-color);
-            font-size: 0.72rem;
+            color: var(--accent-light);
+            font-size: .72rem;
             font-weight: 500;
             letter-spacing: 4px;
             text-transform: uppercase;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         h1 {
-            font-family: 'Cormorant Garamond', serif;
-            background: linear-gradient(135deg, var(--accent-pale) 0%, var(--accent-color) 45%, var(--accent-hover) 60%, var(--accent-deep) 100%);
+            font-family: 'Cormorant Garamond',serif;
+            font-size: 3.6rem;
+            font-weight: 600;
+            letter-spacing: .5px;
+            line-height: 1.1;
+            background: linear-gradient(135deg,var(--accent-pale) 0%,var(--accent-color) 55%,var(--accent-deep) 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            font-size: 3rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            margin-bottom: 22px;
-            line-height: 1.1;
         }
 
-        .important-note {
-            display: inline-block;
-            text-align: left;
-            background-color: rgba(201, 161, 75, 0.06);
-            border-left: 3px solid var(--accent-color);
-            color: var(--text-muted);
-            padding: 14px 18px;
-            border-radius: 0 var(--border-radius) var(--border-radius) 0;
-            font-size: 0.92rem;
-            letter-spacing: 0.2px;
+        .jump {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 40px;
         }
 
-        .important-note strong {
-            color: var(--accent-hover);
-        }
-
-        section {
-            position: relative;
-            background: linear-gradient(160deg, var(--card-bg-light) 0%, var(--card-bg) 100%);
-            padding: 36px 40px;
-            margin-bottom: 26px;
-            border-radius: var(--border-radius);
+        .jump a {
+            padding: 8px 14px;
             border: 1px solid var(--border-color);
-            box-shadow: 0 12px 30px -10px rgba(0,0,0,0.5);
+            border-radius: 999px;
+            color: var(--text-muted);
+            font-size: .72rem;
+            letter-spacing: .4px;
+            text-decoration: none;
+            transition: all .25s ease;
         }
 
-        section::before {
+        .jump a:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-light);
+            background: rgba(110,14,236,.08);
+        }
+
+        /* ---------- Film cards ---------- */
+
+        .film {
+            position: relative;
+            overflow: hidden;
+            padding: 36px 40px 34px;
+            margin-bottom: 30px;
+            scroll-margin-top: 20px;
+            background: linear-gradient(160deg,var(--card-bg-light) 0%,var(--card-bg) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            box-shadow: 0 12px 30px -10px rgba(0,0,0,.5);
+        }
+
+        .film::before {
             content: "";
             position: absolute;
             top: 0;
             left: 0;
             width: 2px;
             height: 100%;
-            background: linear-gradient(180deg, var(--accent-color), transparent);
-            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            background: linear-gradient(180deg,var(--accent-color),transparent);
+            z-index: 2;
         }
 
-        h3 {
-            font-family: 'Cormorant Garamond', serif;
-            color: var(--accent-hover);
-            font-size: 1.6rem;
-            font-weight: 600;
-            letter-spacing: 0.3px;
-            margin-bottom: 16px;
-            padding-bottom: 12px;
+        .poster {
+            display: flex;
+            justify-content: center;
+            background: #000;
+            margin: -36px -40px 28px;
             border-bottom: 1px solid var(--border-color);
+        }
+
+        .poster img {
+            width: auto;
+            height: auto;
+            max-height: 400px;
+        }
+
+        .film h2 {
+            font-family: 'Cormorant Garamond',serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: .4px;
+            line-height: 1.1;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg,var(--accent-pale) 0%,var(--accent-color) 70%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         p {
             color: var(--text-muted);
             font-size: 1rem;
             font-weight: 300;
-            margin-bottom: 10px;
-            letter-spacing: 0.2px;
+            margin-bottom: 12px;
+            letter-spacing: .2px;
+            line-height: 1.75;
         }
 
-        code {
-            background-color: var(--code-bg);
-            color: var(--accent-hover);
-            padding: 2px 7px;
-            border-radius: 3px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.9rem;
+        .lead {
+            color: #C9C9D2;
+            font-size: 1.05rem;
+        }
+
+        hr.divider {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 24px 0;
+        }
+
+        .coming {
+            padding: 16px;
+            margin-bottom: 4px;
+            text-align: center;
+            border: 1px dashed rgba(165,107,255,.5);
+            border-radius: var(--border-radius);
+            background: rgba(110,14,236,.08);
+            font-family: 'Cormorant Garamond',serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--accent-light);
+        }
+
+        /* ---------- Buttons ---------- */
+
+        .btn-primary,
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 13px 28px;
+            margin-top: 4px;
+            border: 1px solid var(--accent-color);
+            border-radius: var(--border-radius);
+            background: transparent;
+            font-family: 'Montserrat',sans-serif;
+            font-size: .78rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            line-height: 1;
+            color: var(--accent-light);
+            text-decoration: none;
+            transition: all .25s ease;
+        }
+
+        .btn-primary::before {
+            content: "\25B6";
+            font-size: .65rem;
+        }
+
+        .btn-primary:hover,
+        .btn:hover {
+            background: linear-gradient(135deg,var(--accent-deep),var(--accent-color));
+            color: #fff;
+            box-shadow: 0 6px 20px -4px rgba(110,14,236,.5);
+        }
+
+        .btn-primary:active,
+        .btn:active {
+            transform: translateY(1px);
         }
 
         .nav-buttons {
             display: flex;
             gap: 14px;
-            margin-top: 36px;
+            margin-top: 10px;
         }
 
         .btn {
             flex: 1;
-            display: inline-flex;
+        }
+
+        /* ---------- Cast (scrolls sideways) ---------- */
+
+        .cast {
+            margin: 30px -40px 0;
+            padding-top: 26px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .cast-head {
+            display: flex;
             align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            border: 1px solid var(--accent-color);
-            outline: none;
-            padding: 13px 28px;
-            border-radius: var(--border-radius);
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.78rem;
-            font-weight: 500;
-            letter-spacing: 2px;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 0 40px;
+            margin-bottom: 16px;
+        }
+
+        .cast-head h3 {
+            font-family: 'Cormorant Garamond',serif;
+            font-size: 1.7rem;
+            font-weight: 600;
+            color: var(--accent-light);
+        }
+
+        .cast-tools {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cast-hint {
+            margin-right: 6px;
+            color: var(--text-muted);
+            font-size: .68rem;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            line-height: 1;
-            text-decoration: none;
-            transition: all 0.25s ease;
-            color: var(--accent-hover) !important;
         }
 
-        .btn:hover {
-            background: linear-gradient(135deg, var(--accent-deep) 0%, var(--accent-color) 50%, var(--accent-hover) 100%);
-            color: #14110A !important;
-            border-color: var(--accent-hover);
-            box-shadow: 0 6px 20px -4px rgba(201, 161, 75, 0.45);
-            text-decoration: none;
-        }
-
-        .btn:active {
-            transform: translateY(1px);
-        }
-
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
+        .cast-tools button {
+            width: 34px;
+            height: 34px;
             border: 1px solid var(--accent-color);
-            outline: none;
-            padding: 13px 32px;
             border-radius: var(--border-radius);
-            font-family: 'Montserrat', sans-serif;
             background: transparent;
-            color: var(--accent-hover) !important;
-            font-size: 0.78rem;
-            font-weight: 500;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            color: var(--accent-light);
+            font-size: 1.1rem;
             line-height: 1;
-            text-decoration: none;
-            transition: all 0.25s ease;
+            cursor: pointer;
+            transition: all .25s ease;
+        }
+
+        .cast-tools button:hover {
+            background: var(--accent-color);
+            color: #fff;
+        }
+
+        .cast-track {
+            display: flex;
+            gap: 14px;
+            overflow-x: auto;
+            padding: 4px 40px 16px;
+            scroll-snap-type: x proximity;
+            scroll-padding: 0 40px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-deep) transparent;
+        }
+
+        .cast-track::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .cast-track::-webkit-scrollbar-thumb {
+            background: var(--accent-deep);
+            border-radius: 3px;
+        }
+
+        .cast-card {
+            position: relative;
+            flex: 0 0 160px;
+            height: 240px;
+            overflow: hidden;
+            scroll-snap-align: start;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: linear-gradient(160deg,#2a1450,#16161A);
+            transition: transform .25s ease,border-color .25s ease;
+        }
+
+        .cast-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-color);
+        }
+
+        .cast-initial {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 50px;
+            font-family: 'Cormorant Garamond',serif;
+            font-size: 4rem;
+            font-weight: 600;
+            color: var(--accent-light);
+            opacity: .5;
+        }
+
+        .cast-card img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .4s ease;
+        }
+
+        .cast-card:hover img {
+            transform: scale(1.06);
+        }
+
+        .cast-info {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 44px 12px 12px;
+            background: linear-gradient(to top,rgba(10,10,12,.96) 0%,rgba(10,10,12,.75) 55%,transparent 100%);
+            text-align: left;
+        }
+
+        .cast-name {
+            font-family: 'Cormorant Garamond',serif;
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: #ECECF1;
+            line-height: 1.15;
+        }
+
+        .cast-by {
             margin-top: 6px;
+            font-size: .58rem;
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
+            color: var(--text-muted);
         }
 
-        .btn-primary:hover {
-            background: linear-gradient(135deg, var(--accent-deep) 0%, var(--accent-color) 50%, var(--accent-hover) 100%);
-            color: #14110A !important;
-            border-color: var(--accent-hover);
-            box-shadow: 0 6px 20px -4px rgba(201, 161, 75, 0.45);
-            text-decoration: none;
+        .cast-actor {
+            margin-top: 1px;
+            font-size: .82rem;
+            font-weight: 500;
+            color: var(--accent-light);
         }
 
-        .btn-primary:active {
-            transform: translateY(1px);
+        /* ---------- Age ratings ---------- */
+
+        .rating-u {
+            --rating-color: var(--rating-u);
         }
+
+        .rating-pg {
+            --rating-color: var(--rating-pg);
+        }
+
+        .rating-12,
+        .rating-pg13 {
+            --rating-color: var(--rating-12);
+        }
+
+        .rating-15 {
+            --rating-color: var(--rating-15);
+        }
+
+        .rating-18 {
+            --rating-color: var(--rating-18);
+        }
+
+        .rating-r {
+            --rating-color: var(--rating-r);
+        }
+
+        .rating-tbc {
+            --rating-color: var(--rating-tbc);
+        }
+
+        .rating-card {
+            position: relative;
+            isolation: isolate;
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            margin-top: 28px;
+            padding: 24px 28px 24px 24px;
+            overflow: hidden;
+            background: linear-gradient(110deg,color-mix(in srgb,var(--rating-color,#8C8C95) 10%,#16161A) 0%,#16161A 60%);
+            border: 1px solid color-mix(in srgb,var(--rating-color,#8C8C95) 28%,#2B2620);
+            border-radius: 6px;
+        }
+
+        .rating-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background: radial-gradient(circle at 74px 50%,color-mix(in srgb,var(--rating-color,#8C8C95) 24%,transparent),transparent 55%);
+        }
+
+        .rating-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            min-width: 100px;
+            height: 84px;
+            padding: 0 14px;
+            border: 2px solid var(--rating-color,#8C8C95);
+            border-radius: 10px;
+            background: color-mix(in srgb,var(--rating-color,#8C8C95) 14%,#0A0A0C);
+            box-shadow: inset 0 0 0 4px #0A0A0C,inset 0 0 0 5px color-mix(in srgb,var(--rating-color,#8C8C95) 45%,transparent),0 0 30px -8px var(--rating-color,transparent);
+            color: var(--rating-color,#8C8C95);
+            font-family: 'Montserrat',sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: -.3px;
+            line-height: 1;
+            white-space: nowrap;
+        }
+
+        .rating-body {
+            flex: 1;
+            min-width: 0;
+            padding-left: 22px;
+            border-left: 1px solid color-mix(in srgb,var(--rating-color,#8C8C95) 25%,transparent);
+        }
+
+        .rating-card .rating-title {
+            margin: 0 0 8px;
+            padding: 0;
+            border: 0;
+            font-family: 'Cormorant Garamond',serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            font-variant-numeric: lining-nums;
+            line-height: 1.15;
+            color: #ECECF1;
+        }
+
+        .rating-card .rating-reason {
+            margin: 0;
+            color: #A4A4AE;
+            font-size: .92rem;
+            line-height: 1.7;
+        }
+
+        .rating-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .rating-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 12px;
+            border: 1px solid color-mix(in srgb,var(--rating-color,#8C8C95) 35%,transparent);
+            border-radius: 4px;
+            background: color-mix(in srgb,var(--rating-color,#8C8C95) 8%,transparent);
+            color: #D6D6DC;
+            font-size: .72rem;
+            font-weight: 500;
+            letter-spacing: .3px;
+            line-height: 1;
+        }
+
+        .rating-tag::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--rating-color,#8C8C95);
+        }
+
+        /* ---------- Footer ---------- */
 
         footer {
             text-align: center;
@@ -220,486 +546,303 @@
             padding-top: 24px;
             border-top: 1px solid var(--border-color);
             color: var(--text-muted);
-            font-size: 0.8rem;
+            font-size: .8rem;
             letter-spacing: 1px;
+            line-height: 1.9;
         }
 
-        .paragraph {
-          margin-bottom: 0;
-          margin-top: 0;
+        footer address {
+            font-style: normal;
         }
 
-        .divider {
-          margin-top: 50px;
-          margin-bottom: 50px;
+        /* ---------- Mobile ---------- */
+
+        @media (max-width:600px) {
+            .container {
+                padding: 50px 16px 40px;
+            }
+
+            h1 {
+                font-size: 2.6rem;
+            }
+
+            .film {
+                padding: 26px 20px 26px;
+            }
+
+            .poster {
+                margin: -26px -20px 22px;
+            }
+
+            .poster img {
+                max-height: 300px;
+            }
+
+            .film h2 {
+                font-size: 1.9rem;
+            }
+
+            .cast {
+                margin: 26px -20px 0;
+            }
+
+            .cast-head {
+                padding: 0 20px;
+            }
+
+            .cast-track {
+                padding: 4px 20px 16px;
+                scroll-padding: 0 20px;
+            }
+
+            .cast-hint {
+                display: none;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+            }
+
+            .rating-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+                padding: 20px;
+            }
+
+            .rating-card::before {
+                background: radial-gradient(circle at 64px 44px,color-mix(in srgb,var(--rating-color,#8C8C95) 24%,transparent),transparent 55%);
+            }
+
+            .rating-badge {
+                min-width: 88px;
+                height: 64px;
+                font-size: 1.15rem;
+            }
+
+            .rating-body {
+                width: 100%;
+                padding: 16px 0 0;
+                border-left: 0;
+                border-top: 1px solid color-mix(in srgb,var(--rating-color,#8C8C95) 25%,transparent);
+            }
         }
-
-        :root {
-    --rating-u:    #3ddc84;   /* green  */
-    --rating-pg:   #f2c94c;   /* yellow */
-    --rating-12:   #ff9f43;   /* orange */
-    --rating-15:   #ff5e9c;   /* pink   */
-    --rating-18:   #ff3b3b;   /* red    */
-    --rating-r:    #e5173f;   /* crimson */
-    --rating-tbc:  #a56bff;   /* soft purple, for "coming soon" */
-}
-
-.rating-u    { --rating-color: var(--rating-u); }
-.rating-pg   { --rating-color: var(--rating-pg); }
-.rating-12   { --rating-color: var(--rating-12); }
-.rating-pg13 { --rating-color: var(--rating-12); }
-.rating-15   { --rating-color: var(--rating-15); }
-.rating-18   { --rating-color: var(--rating-18); }
-.rating-r    { --rating-color: var(--rating-r); }
-.rating-tbc  { --rating-color: var(--rating-tbc); }
-
-
-/* ---------- The card ---------- */
-.rating-card {
-    position: relative;
-    isolation: isolate;
-    display: flex;
-    align-items: center;
-    gap: 22px;
-    margin-top: 28px;
-    padding: 24px 28px 24px 24px;
-    overflow: hidden;
-    background: linear-gradient(
-        110deg,
-        color-mix(in srgb, var(--rating-color, #8C8C95) 10%, #16161A) 0%,
-        #16161A 60%
-    );
-    border: 1px solid color-mix(in srgb, var(--rating-color, #8C8C95) 28%, #2B2620);
-    border-radius: 6px;
-}
-
-/* Soft glow behind the badge */
-.rating-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background: radial-gradient(
-        circle at 74px 50%,
-        color-mix(in srgb, var(--rating-color, #8C8C95) 24%, transparent),
-        transparent 55%
-    );
-}
-
-
-/* ---------- The badge (certificate seal) ---------- */
-.rating-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    min-width: 100px;
-    height: 84px;
-    padding: 0 14px;
-    border: 2px solid var(--rating-color, #8C8C95);
-    border-radius: 10px;
-    background: color-mix(in srgb, var(--rating-color, #8C8C95) 14%, #0A0A0C);
-    /* double-frame effect: dark band + thin inner ring */
-    box-shadow:
-        inset 0 0 0 4px #0A0A0C,
-        inset 0 0 0 5px color-mix(in srgb, var(--rating-color, #8C8C95) 45%, transparent),
-        0 0 30px -8px var(--rating-color, transparent);
-    color: var(--rating-color, #8C8C95);
-    font-family: 'Montserrat', 'Segoe UI', sans-serif;
-    font-size: 1.3rem;
-    font-weight: 600;
-    letter-spacing: -0.3px;
-    line-height: 1;
-    white-space: nowrap;
-}
-
-/* Small version, for sitting next to a movie title */
-.rating-badge-sm {
-    min-width: 34px;
-    height: 32px;
-    padding: 0 9px;
-    border-width: 2px;
-    border-radius: 6px;
-    box-shadow: none;
-    font-size: 0.8rem;
-    vertical-align: middle;
-}
-
-
-/* ---------- Text side ---------- */
-.rating-body {
-    flex: 1;
-    min-width: 0;
-    padding-left: 22px;
-    border-left: 1px solid color-mix(in srgb, var(--rating-color, #8C8C95) 25%, transparent);
-}
-
-/* Extra selector weight so it still works if you use <h1>-<h4> for the title */
-.rating-card .rating-title {
-    margin: 0 0 8px;
-    padding: 0;
-    border: 0;
-    background: none;
-    -webkit-background-clip: border-box;
-    background-clip: border-box;
-    color: #ECECF1;
-    -webkit-text-fill-color: #ECECF1;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem;
-    font-weight: 600;
-    font-variant-numeric: lining-nums;
-    letter-spacing: 0.2px;
-    line-height: 1.15;
-}
-
-.rating-card .rating-reason {
-    margin: 0;
-    color: #A4A4AE;
-    font-size: 0.92rem;
-    font-weight: 300;
-    line-height: 1.7;
-    letter-spacing: 0.2px;
-}
-
-
-/* ---------- Content tags ---------- */
-.rating-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 16px;
-}
-
-.rating-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 7px 12px;
-    border: 1px solid color-mix(in srgb, var(--rating-color, #8C8C95) 35%, transparent);
-    border-radius: 4px;
-    background: color-mix(in srgb, var(--rating-color, #8C8C95) 8%, transparent);
-    color: #D6D6DC;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.3px;
-    line-height: 1;
-}
-
-/* coloured dot before each tag */
-.rating-tag::before {
-    content: "";
-    flex-shrink: 0;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--rating-color, #8C8C95);
-}
-
-
-/* ---------- Mobile ---------- */
-@media (max-width: 560px) {
-    .rating-card {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
-        padding: 20px;
-    }
-
-    .rating-card::before {
-        background: radial-gradient(
-            circle at 64px 44px,
-            color-mix(in srgb, var(--rating-color, #8C8C95) 24%, transparent),
-            transparent 55%
-        );
-    }
-
-    .rating-badge {
-        min-width: 88px;
-        height: 64px;
-        font-size: 1.15rem;
-    }
-
-    .rating-body {
-        width: 100%;
-        padding-left: 0;
-        padding-top: 16px;
-        border-left: 0;
-        border-top: 1px solid color-mix(in srgb, var(--rating-color, #8C8C95) 25%, transparent);
-    }
-}
-
-        img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 16px;
-    border-radius: var(--border-radius);
-}
-
-@media (max-width: 600px) {
-    .container {
-        padding: 50px 16px 40px;
-    }
-
-    section {
-        padding: 24px 20px;
-    }
-
-    h1 {
-        font-size: 2rem;
-    }
-
-    .nav-buttons {
-        flex-direction: column;
-    }
-}
-
     </style>
 </head>
 <body>
-  <div class="container">
-        <header>
-            <span class="eyebrow">LiamsLevelUp</span>
-            <h1>LJG Studios</h1>
-        </header>
+<div class="container">
 
+    <header>
+        <span class="eyebrow">LiamsLevelUp</span>
+        <h1>LJG Studios</h1>
+    </header>
 
-        <main></main>
+    <nav class="jump">
+        <a href="#bi1">The Biggest Infection</a>
+        <a href="#bi2">The Biggest Infection 2</a>
+        <a href="#bi3">The Biggest Infection 3</a>
+        <a href="#bi4">The Biggest Infection 4</a>
+        <a href="#ghost">Ghost Apocalypse</a>
+        <a href="#agent">Agent</a>
+    </nav>
 
-        <section>
-          <h1>The Biggest Infection</h1>
-          <img src="TheBiggestInfection.jpeg" alt="The Biggest Infection" width="500" height="500">
-          <p class="paragraph">Watch the Biggest Infection now!</p>
-          <a href="https://www.youtube.com/watch?v=uYuttnnP-wY&t=5s" target="_blank" class="btn-primary">Watch The Biggest Infection</a>
+    <main>
 
+        <!-- The Biggest Infection -->
+        <section class="film" id="bi1">
+            <div class="poster"><img src="TheBiggestInfection.jpeg" alt="The Biggest Infection" width="500" height="500"></div>
+            <h2>The Biggest Infection</h2>
+            <p class="lead">Watch the Biggest Infection now!</p>
+            <a href="https://www.youtube.com/watch?v=uYuttnnP-wY&t=5s" target="_blank" rel="noopener" class="btn-primary">Watch The Biggest Infection</a>
             <hr class="divider">
-
-
-            <p class="paragraph">This movie is about different coloured kingdoms.</p>
-            <p class="paragraph">Some kingdoms are good some are bad. Some are weak</p>
-            <p class="paragraph">and some are strong. the good vs the bad begins.</p>
-
+            <p>This movie is about different coloured kingdoms. Some kingdoms are good some are bad. Some are weak and some are strong. the good vs the bad begins.</p>
             <div class="rating-card rating-pg13">
                 <div class="rating-badge">PG 13</div>
                 <div class="rating-body">
                     <h3 class="rating-title">PG-13</h3>
                     <p class="rating-reason">Rated PG-13 due to violent sound effects and mild swearing.</p>
-                    <div class="rating-tags">
-                        <span class="rating-tag">Violent sound effects</span>
-                        <span class="rating-tag">Mild swearing</span>
-                    </div>
+                    <div class="rating-tags"><span class="rating-tag">Violent sound effects</span><span class="rating-tag">Mild swearing</span></div>
                 </div>
             </div>
-
-            <h1>Actors</h1>
-            <p class="paragraph">Max - Proanfun</p>
-            <p class="paragraph">Shadow - FlashEdits</p>
-            <p class="paragraph">Alfie - Macievr</p>
-            <p class="paragraph">Timmy - Liamslevelup</p>
-            <p class="paragraph">Greg - Liamslevelup</p>
-            <p class="paragraph">Sam - Liamslevelup</p>
-            <p class="paragraph">Jimmy - Liamslevelup</p>
-            <p class="paragraph">King orange - Liamslevelup</p>
-            <p class="paragraph">Gary - Liamslevelup</p>
+            <div class="cast">
+                <div class="cast-head"><h3>Actors</h3><div class="cast-tools"><span class="cast-hint">Scroll for more</span><button data-dir="-1" aria-label="Scroll left">&lsaquo;</button><button data-dir="1" aria-label="Scroll right">&rsaquo;</button></div></div>
+                <div class="cast-track" data-cast="bi"></div>
+            </div>
         </section>
 
-          <section>
-          <h1>The Biggest Infection 2</h1>
-          <img src="TheBiggestInfection2.jpeg" alt="The Biggest Infection 2" width="600" height="500">
-          <p class="paragraph">Watch the Biggest Infection 2 now!</p>
-          <a href="https://www.youtube.com/watch?v=DZWZ30mIvJ8&t=1s" target="_blank" class="btn-primary">Watch The Biggest Infection 2</a>
-
+        <!-- The Biggest Infection 2 -->
+        <section class="film" id="bi2">
+            <div class="poster"><img src="TheBiggestInfection2.jpeg" alt="The Biggest Infection 2" width="600" height="500"></div>
+            <h2>The Biggest Infection 2</h2>
+            <p class="lead">Watch the Biggest Infection 2 now!</p>
+            <a href="https://www.youtube.com/watch?v=DZWZ30mIvJ8&t=1s" target="_blank" rel="noopener" class="btn-primary">Watch The Biggest Infection 2</a>
             <hr class="divider">
-
-
-            <p class="paragraph">This movie is a carry on from The biggest Infection.</p>
-
+            <p>This movie is a carry on from The biggest Infection.</p>
             <div class="rating-card rating-pg13">
                 <div class="rating-badge">PG 13</div>
                 <div class="rating-body">
                     <h3 class="rating-title">PG-13</h3>
                     <p class="rating-reason">Rated PG-13 due to violent sound effects and mild swearing.</p>
-                    <div class="rating-tags">
-                        <span class="rating-tag">Violent sound effects</span>
-                        <span class="rating-tag">Mild swearing</span>
-                    </div>
+                    <div class="rating-tags"><span class="rating-tag">Violent sound effects</span><span class="rating-tag">Mild swearing</span></div>
                 </div>
             </div>
+            <div class="cast">
+                <div class="cast-head"><h3>Actors</h3><div class="cast-tools"><span class="cast-hint">Scroll for more</span><button data-dir="-1" aria-label="Scroll left">&lsaquo;</button><button data-dir="1" aria-label="Scroll right">&rsaquo;</button></div></div>
+                <div class="cast-track" data-cast="bi"></div>
+            </div>
+        </section>
 
-            <h1>Actors</h1>
-            <p class="paragraph">Max - Proanfun</p>
-            <p class="paragraph">Shadow - FlashEdits</p>
-            <p class="paragraph">Alfie - Macievr</p>
-            <p class="paragraph">Timmy - Liamslevelup</p>
-            <p class="paragraph">Greg - Liamslevelup</p>
-            <p class="paragraph">Sam - Liamslevelup</p>
-            <p class="paragraph">Jimmy - Liamslevelup</p>
-            <p class="paragraph">King orange - Liamslevelup</p>
-            <p class="paragraph">Gary - Liamslevelup</p>
-            </section>
-
-            <section>
-          <h1>The Biggest Infection 3</h1>
-          <img src="TheBiggestInfection3.jpeg" alt="The Biggest Infection 3" width="600" height="500">
-          <p class="paragraph">Watch the Biggest Infection 3 now!</p>
-          <a href="https://www.youtube.com/watch?v=N8e-W9ZN7e0" target="_blank" class="btn-primary">Watch The Biggest Infection 3</a>
-
+        <!-- The Biggest Infection 3 -->
+        <section class="film" id="bi3">
+            <div class="poster"><img src="TheBiggestInfection3.jpeg" alt="The Biggest Infection 3" width="600" height="500"></div>
+            <h2>The Biggest Infection 3</h2>
+            <p class="lead">Watch the Biggest Infection 3 now!</p>
+            <a href="https://www.youtube.com/watch?v=N8e-W9ZN7e0" target="_blank" rel="noopener" class="btn-primary">Watch The Biggest Infection 3</a>
             <hr class="divider">
-
-
-            <p class="paragraph">This movie is a carry on from The biggest Infection 2.</p>
-
+            <p>This movie is a carry on from The biggest Infection 2.</p>
             <div class="rating-card rating-r">
                 <div class="rating-badge">R</div>
                 <div class="rating-body">
                     <h3 class="rating-title">Rated R</h3>
                     <p class="rating-reason">Rated R due to mentions and depictions of suicide, swearing, violence and blood.</p>
-                    <div class="rating-tags">
-                        <span class="rating-tag">Suicide</span>
-                        <span class="rating-tag">Swearing</span>
-                        <span class="rating-tag">Violence</span>
-                        <span class="rating-tag">Blood</span>
-                    </div>
+                    <div class="rating-tags"><span class="rating-tag">Suicide</span><span class="rating-tag">Swearing</span><span class="rating-tag">Violence</span><span class="rating-tag">Blood</span></div>
                 </div>
             </div>
-                <h1>Actors</h1>
-            <p class="paragraph">Max - Proanfun</p>
-            <p class="paragraph">Shadow - FlashEdits</p>
-            <p class="paragraph">Alfie - Macievr</p>
-            <p class="paragraph">Timmy - Liamslevelup</p>
-            <p class="paragraph">Greg - Liamslevelup</p>
-            <p class="paragraph">Sam - Liamslevelup</p>
-            <p class="paragraph">Jimmy - Liamslevelup</p>
-            <p class="paragraph">King orange - Liamslevelup</p>
-            <p class="paragraph">Gary - Liamslevelup</p>
-            </section>
-
-            <section>
-          <h1>The Biggest Infection 4</h1>
-          <img src="TheBiggestInfection4.jpeg" alt="The Biggest Infection 4" width="600" height="500">
-
-
-          <hr class="divider">
-          
-          <h1>Coming Soon!</h1>
-
-
-            <hr class="divider">
-
-
-            <p class="paragraph">This movie is a carry on from The biggest Infection 3.</p>
-
-            <div class="rating-card rating-tbc">
-                <span class="rating-badge">TBC</span>
-            </div>    
-
-                <h1>Actors</h1>
-            <p class="paragraph">Max - Proanfun</p>
-            <p class="paragraph">Shadow - FlashEdits</p>
-            <p class="paragraph">Alfie - Macievr</p>
-            <p class="paragraph">Timmy - Liamslevelup</p>
-            <p class="paragraph">Greg - Liamslevelup</p>
-            <p class="paragraph">Sam - Liamslevelup</p>
-            <p class="paragraph">Jimmy - Liamslevelup</p>
-            <p class="paragraph">King orange - Liamslevelup</p>
-            <p class="paragraph">Gary - Liamslevelup</p>
-            </section>
-
-            <section>
-          <h1>Ghost Apocalypse</h1>
-          <img src="GhostApocalypse.jpeg" alt="Ghost Apocalypse" width="600" height="500">
-
-        </hr>
-          <p class="paragraph">Ghost Apocalypse is out NOW!</p>
-          <p>Watch Ghost Apocalypse now!</p>
-          <a href="https://www.youtube.com/watch?v=c3YWVNY3Oeo=1s" target="_blank" class="btn-primary">Watch Ghost Apocalypse</a> 
-
-
-
-          <hr class="divider">
-
-
-
-          <p class="paragraph">This movie is about ghosts and their apocalypse, in this movie</p>
-          <p class="paragraph">there are 3 main characters, Joe, James and Nick. They will be</p>
-          <p class="paragraph">fighting against the ghosts.</p>
-
-          <div class="rating-card rating-pg13">
-            <span class="rating-badge">PG 13</span>
-            <div class="rating-body">
-                <h3 class="rating-title">Rated PG 13</h3>
-                <p class="rating-reason">Rated PG 13 due to violent sound effects and mild swearing.</p>
-                <div class="rating-tags">
-                    <span class="rating-tag">Violent sound effects</span>
-                    <span class="rating-tag">Mild swearing</span>
-                </div>
-          </div>
-        </div>
-
-        <h1>Actors</h1>
-            <p class="paragraph">James - Proanfun</p>
-            <p class="paragraph">Joe - Liamslevelup</p>
-            <p class="paragraph">Nick - FlashEdits</p>
-            <p class="paragraph">Redeye - Liams level up</p>
+            <div class="cast">
+                <div class="cast-head"><h3>Actors</h3><div class="cast-tools"><span class="cast-hint">Scroll for more</span><button data-dir="-1" aria-label="Scroll left">&lsaquo;</button><button data-dir="1" aria-label="Scroll right">&rsaquo;</button></div></div>
+                <div class="cast-track" data-cast="bi"></div>
+            </div>
         </section>
 
-        <section>
-          <h1>Agent</h1>
-          <img src="Agent-poster.jpeg" alt="Agent" width="600" height="500">
+        <!-- The Biggest Infection 4 -->
+        <section class="film" id="bi4">
+            <div class="poster"><img src="TheBiggestInfection4.jpeg" alt="The Biggest Infection 4" width="600" height="500"></div>
+            <h2>The Biggest Infection 4</h2>
+            <div class="coming">Coming Soon!</div>
+            <hr class="divider">
+            <p>This movie is a carry on from The biggest Infection 3.</p>
+            <div class="rating-card rating-tbc"><span class="rating-badge">TBC</span></div>
+            <div class="cast">
+                <div class="cast-head"><h3>Actors</h3><div class="cast-tools"><span class="cast-hint">Scroll for more</span><button data-dir="-1" aria-label="Scroll left">&lsaquo;</button><button data-dir="1" aria-label="Scroll right">&rsaquo;</button></div></div>
+                <div class="cast-track" data-cast="bi"></div>
+            </div>
+        </section>
 
-        </hr>
-          <p class="paragraph">Agent is out NOW!</p>
-          <p>Watch Agent now!</p>
-          <a href="https://www.youtube.com/watch?v=T_sfOC8sAsg&t=1s" target="_blank" class="btn-primary">Watch Agent</a> 
+        <!-- Ghost Apocalypse -->
+        <section class="film" id="ghost">
+            <div class="poster"><img src="GhostApocalypse.jpeg" alt="Ghost Apocalypse" width="600" height="500"></div>
+            <h2>Ghost Apocalypse</h2>
+            <p class="lead">Ghost Apocalypse is out NOW!</p>
+            <p>Watch Ghost Apocalypse now!</p>
+            <a href="https://www.youtube.com/watch?v=c3YWVNY3Oeo&t=1s" target="_blank" rel="noopener" class="btn-primary">Watch Ghost Apocalypse</a>
+            <hr class="divider">
+            <p>This movie is about ghosts and their apocalypse, in this movie there are 3 main characters, Joe, James and Nick. They will be fighting against the ghosts.</p>
+            <div class="rating-card rating-pg13">
+                <span class="rating-badge">PG 13</span>
+                <div class="rating-body">
+                    <h3 class="rating-title">Rated PG 13</h3>
+                    <p class="rating-reason">Rated PG 13 due to violent sound effects and mild swearing.</p>
+                    <div class="rating-tags"><span class="rating-tag">Violent sound effects</span><span class="rating-tag">Mild swearing</span></div>
+                </div>
+            </div>
+            <div class="cast">
+                <div class="cast-head"><h3>Actors</h3><div class="cast-tools"><span class="cast-hint">Scroll for more</span><button data-dir="-1" aria-label="Scroll left">&lsaquo;</button><button data-dir="1" aria-label="Scroll right">&rsaquo;</button></div></div>
+                <div class="cast-track" data-cast="ghost"></div>
+            </div>
+        </section>
 
-
-
-          <hr class="divider">
-
-
-
-          <p class="paragraph">This movie is about:</p>
-          <p class="paragraph">Henry, a kid who is secretly a superhero named Agent, is suddenly distracted by the sound of breaking glass—Victor's experiment has escaped.</p>
-
+        <!-- Agent -->
+        <section class="film" id="agent">
+            <div class="poster"><img src="Agent-poster.jpeg" alt="Agent" width="600" height="500"></div>
+            <h2>Agent</h2>
+            <p class="lead">Agent is out NOW!</p>
+            <p>Watch Agent now!</p>
+            <a href="https://www.youtube.com/watch?v=T_sfOC8sAsg&t=1s" target="_blank" rel="noopener" class="btn-primary">Watch Agent</a>
+            <hr class="divider">
+            <p>This movie is about:</p>
+            <p>Henry, a kid who is secretly a superhero named Agent, is suddenly distracted by the sound of breaking glass—Victor’s experiment has escaped.</p>
             <div class="rating-card rating-15">
                 <span class="rating-badge">15+</span>
                 <div class="rating-body">
                     <h3 class="rating-title">Rated 15+</h3>
                     <p class="rating-reason">Rated 15+ due to violence, blood, and swearing.</p>
-                    <div class="rating-tags">
-                        <span class="rating-tag">Violence</span>
-                        <span class="rating-tag">Blood</span>
-                        <span class="rating-tag">Swearing</span>
-                    </div>
+                    <div class="rating-tags"><span class="rating-tag">Violence</span><span class="rating-tag">Blood</span><span class="rating-tag">Swearing</span></div>
                 </div>
             </div>
-
-            <h1>Actors</h1>
-            <p class="paragraph">Agent - Proanfun</p>
-            <p class="paragraph">Darknight - Liamslevelup</p>
-            <p class="paragraph">Victor - FlashEdits</p>
-        </section>
-
-
-            <div class="nav-buttons">
-                <a href="index.html" class="btn">Return to Homepage 🏠</a>
+            <div class="cast">
+                <div class="cast-head"><h3>Actors</h3><div class="cast-tools"><span class="cast-hint">Scroll for more</span><button data-dir="-1" aria-label="Scroll left">&lsaquo;</button><button data-dir="1" aria-label="Scroll right">&rsaquo;</button></div></div>
+                <div class="cast-track" data-cast="agent"></div>
             </div>
-
-
-              <footer>
-            <adress>&copy; 2026 Proanfun and Liamslevelup. All rights reserved.</adress>
-            <address>Maintained by Proanfun</address>
-            <adress>&#9993; Contact me at proanfunyt@gmail.com</adress>
-        </footer>
-
-              
         </section>
-        </main>
 
+        <div class="nav-buttons">
+            <a href="index.html" class="btn">Return to Homepage 🏠</a>
+        </div>
+    </main>
 
-  </div>
+    <footer>
+        <address>&copy; 2026 Proanfun and Liamslevelup. All rights reserved.</address>
+        <address>Maintained by Proanfun</address>
+        <address>&#9993; Contact me at proanfunyt@gmail.com</address>
+    </footer>
 
+</div>
+
+<script>
+        /* ===== CAST LIST =====
+           Each entry is:  ["Character", "Played by", "image file"]
+           Leave the image file out to show a letter tile instead.
+           Keep the image files in the same folder as this page (like the posters). */
+        const CAST = {
+            bi: [
+                ["Max", "Proanfun", "Max.jpeg"],
+                ["Shadow", "FlashEdits", "Shadow.jpeg"],
+                ["Alfie", "Macievr", "Alfie.jpeg"],
+                ["Timmy", "Liamslevelup", "Timmy.jpeg"],
+                ["Greg", "Liamslevelup", "Greg.jpeg"],
+                ["Sam", "Liamslevelup", "Sam.jpeg"],
+                ["Jimmy", "Liamslevelup", "Jimmy.jpeg"],
+                ["King orange", "Liamslevelup", "KingOrange.jpeg"],
+                ["Gary", "Liamslevelup", "Gary.jpeg"]
+            ],
+            ghost: [
+                ["James", "Proanfun", "James.jpeg"],
+                ["Joe", "Liamslevelup", "Joe.jpeg"],
+                ["Nick", "FlashEdits", "Nick.jpeg"],
+                ["Redeye", "Liams level up", "Redeye.jpeg"]
+            ],
+            agent: [
+                ["Agent", "Proanfun", "Agent.jpeg"],
+                ["Darknight", "Liamslevelup", "Darkknight.jpeg"],
+                ["Victor", "FlashEdits", "Victor.jpeg"]
+            ]
+        };
+
+        /* Build the cast cards */
+        document.querySelectorAll('.cast-track').forEach(track => {
+            (CAST[track.dataset.cast] || []).forEach(([name, actor, image]) => {
+                const photo = image
+                    ? `<img src="${image}" alt="${name}" loading="lazy" onerror="this.remove()">`
+                    : '';
+                track.insertAdjacentHTML('beforeend',
+                    `<div class="cast-card">
+                        <span class="cast-initial">${name[0]}</span>
+                        ${photo}
+                        <div class="cast-info">
+                            <div class="cast-name">${name}</div>
+                            <div class="cast-by">Played by</div>
+                            <div class="cast-actor">${actor}</div>
+                        </div>
+                    </div>`);
+            });
+        });
+
+        /* Arrow buttons */
+        document.querySelectorAll('.cast').forEach(cast => {
+            const track = cast.querySelector('.cast-track');
+            cast.querySelectorAll('[data-dir]').forEach(btn =>
+                btn.addEventListener('click', () => track.scrollBy({ left: btn.dataset.dir * 300, behavior: 'smooth' })));
+        });
+    </script>
 </body>
 </html>
