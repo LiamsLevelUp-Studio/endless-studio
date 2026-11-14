@@ -22,13 +22,13 @@
             --accent-pale: #3bc3f8;
             --border-color: #2B2620;
             --border-radius: 4px;
-            --rating-u: #3ddc84;
-            --rating-pg: #f2c94c;
-            --rating-12: #ff9f43;
-            --rating-15: #ff5e9c;
-            --rating-18: #ff3b3b;
-            --rating-r: #e5173f;
-            --rating-tbc: #a56bff;
+            --rating-all: #3ddc84;     /* All ages (replaces U) */
+            --rating-8: #f2c94c;       /* Ages 8+ / parental guidance (replaces PG) */
+            --rating-12: #ff9f43;      /* Ages 12+ (also used by 13+) */
+            --rating-15: #ff5e9c;      /* Ages 15+ */
+            --rating-18: #ff3b3b;      /* Ages 18+ */
+            --rating-mature: #e5173f;  /* Mature / restricted (replaces R) */
+            --rating-tbc: #a56bff;     /* To be confirmed */
         }
 
         /* ---------- Page basics ---------- */
@@ -408,17 +408,16 @@
         }
 
         /* ---------- Age ratings ---------- */
-
-        .rating-u {
-            --rating-color: var(--rating-u);
+        .rating-all {
+            --rating-color: var(--rating-all);
         }
 
-        .rating-pg {
-            --rating-color: var(--rating-pg);
+        .rating-8 {
+            --rating-color: var(--rating-8);
         }
 
         .rating-12,
-        .rating-pg13 {
+        .rating-13 {
             --rating-color: var(--rating-12);
         }
 
@@ -430,8 +429,8 @@
             --rating-color: var(--rating-18);
         }
 
-        .rating-r {
-            --rating-color: var(--rating-r);
+        .rating-mature {
+            --rating-color: var(--rating-mature);
         }
 
         .rating-tbc {
@@ -656,11 +655,11 @@
             <a href="https://www.youtube.com/watch?v=uYuttnnP-wY&t=5s" target="_blank" rel="noopener" class="btn-primary">Watch The Biggest Infection</a>
             <hr class="divider">
             <p>This movie is about different coloured kingdoms. Some kingdoms are good some are bad. Some are weak and some are strong. the good vs the bad begins.</p>
-            <div class="rating-card rating-pg13">
-                <div class="rating-badge">PG 13</div>
+            <div class="rating-card rating-13">
+                <div class="rating-badge">13+</div>
                 <div class="rating-body">
-                    <h3 class="rating-title">PG-13</h3>
-                    <p class="rating-reason">Rated PG-13 due to violent sound effects and mild swearing.</p>
+                    <h3 class="rating-title">Rated 13+</h3>
+                    <p class="rating-reason">Rated 13+ due to violent sound effects and mild swearing.</p>
                     <div class="rating-tags"><span class="rating-tag">Violent sound effects</span><span class="rating-tag">Mild swearing</span></div>
                 </div>
             </div>
@@ -678,11 +677,11 @@
             <a href="https://www.youtube.com/watch?v=DZWZ30mIvJ8&t=1s" target="_blank" rel="noopener" class="btn-primary">Watch The Biggest Infection 2</a>
             <hr class="divider">
             <p>This movie is a carry on from The biggest Infection.</p>
-            <div class="rating-card rating-pg13">
-                <div class="rating-badge">PG 13</div>
+            <div class="rating-card rating-13">
+                <div class="rating-badge">13+</div>
                 <div class="rating-body">
-                    <h3 class="rating-title">PG-13</h3>
-                    <p class="rating-reason">Rated PG-13 due to violent sound effects and mild swearing.</p>
+                    <h3 class="rating-title">Rated 13+</h3>
+                    <p class="rating-reason">Rated 13+ due to violent sound effects and mild swearing.</p>
                     <div class="rating-tags"><span class="rating-tag">Violent sound effects</span><span class="rating-tag">Mild swearing</span></div>
                 </div>
             </div>
@@ -700,11 +699,11 @@
             <a href="https://www.youtube.com/watch?v=N8e-W9ZN7e0" target="_blank" rel="noopener" class="btn-primary">Watch The Biggest Infection 3</a>
             <hr class="divider">
             <p>This movie is a carry on from The biggest Infection 2.</p>
-            <div class="rating-card rating-r">
-                <div class="rating-badge">R</div>
+            <div class="rating-card rating-mature">
+                <div class="rating-badge">Mature</div>
                 <div class="rating-body">
-                    <h3 class="rating-title">Rated R</h3>
-                    <p class="rating-reason">Rated R due to mentions and depictions of suicide, swearing, violence and blood.</p>
+                    <h3 class="rating-title">Rated Mature</h3>
+                    <p class="rating-reason">Rated Mature due to mentions and depictions of suicide, swearing, violence and blood.</p>
                     <div class="rating-tags"><span class="rating-tag">Suicide</span><span class="rating-tag">Swearing</span><span class="rating-tag">Violence</span><span class="rating-tag">Blood</span></div>
                 </div>
             </div>
@@ -737,11 +736,11 @@
             <a href="https://www.youtube.com/watch?v=c3YWVNY3Oeo&t=1s" target="_blank" rel="noopener" class="btn-primary">Watch Ghost Apocalypse</a>
             <hr class="divider">
             <p>This movie is about ghosts and their apocalypse, in this movie there are 3 main characters, Joe, James and Nick. They will be fighting against the ghosts.</p>
-            <div class="rating-card rating-pg13">
-                <span class="rating-badge">PG 13</span>
+            <div class="rating-card rating-13">
+                <span class="rating-badge">13+</span>
                 <div class="rating-body">
-                    <h3 class="rating-title">Rated PG 13</h3>
-                    <p class="rating-reason">Rated PG 13 due to violent sound effects and mild swearing.</p>
+                    <h3 class="rating-title">Rated 13+</h3>
+                    <p class="rating-reason">Rated 13+ due to violent sound effects and mild swearing.</p>
                     <div class="rating-tags"><span class="rating-tag">Violent sound effects</span><span class="rating-tag">Mild swearing</span></div>
                 </div>
             </div>
